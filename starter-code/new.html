@@ -11,7 +11,23 @@
     <link rel="stylesheet" href="styles/modules.css">
     <!-- NOTE (stretch goal): To fully incorporate the highlighting library "hljs" we need to fill the empty link tag below to refer to a CSS file that will handle our text highlighting -->
     <link>
-    <!-- TODO: We want our new article form to be able to display a preview of the article that is being entered. Thus, we need code here that will recreate the same structure of our other articles. What do you think we need to add here? -->
+    <!-- DONE: We want our new article form to be able to display a preview of the article that is being entered. Thus, we need code here that will recreate the same structure of our other articles. What do you think we need to add here?
+      Estimated time: 20 minutes
+      Actual time: 20 minutes
+    -->
+      <script type="text/x-handlebars-template" id="formTemplate">
+        <article class="clearfix" data-author="{{author}}" data-category="{{category}}">
+          <header>
+            <h1>{{title}}</h1>
+            <div class="byline">
+              By <address><a href="{{authorUrl}}">{{author}}</a></address>
+              {{publishStatus}}
+            </div>
+          </header>
+          <section class="article-body">{{{body}}}</section>
+          <a href="#" class="read-on">Read on &rarr;</a>
+        </article>
+      </script>
     </head>
   <body>
     <header class="site-header clearfix">
@@ -34,13 +50,24 @@
 
       <section id="write" class="tab-content">
         <h1>Create New Article</h1>
-        <!-- TODO: Set up a form to accept user input for a new blog article. Remember that we need:
+        <!-- DONE: Set up a form to accept user input for a new blog article. Remember that we need:
                    1. Article title
                    2. Article body
                    3. Article author
                    4. Author's URL
                    5. Article category
-                   6. Some way to know if this article is a draft or is published -->
+                   6. Some way to know if this article is a draft or is published
+          Estimated time: 20 minutes
+          Actual time: 10 minutes (so far...)
+          -->
+        <form id="entryForm">
+          <label>Title<input type="text" id="entryTitle" placeholder="Title"></label>
+          <label>Body<input type="text" id="entryBody" placeholder="Body"></label>
+          <label>Author<input type="text" id="entryAuthor" placeholder="Author"></label>
+          <label>AuthorUrl<input type="text" id="entryAuthorUrl" placeholder="AuthorUrl"></label>
+          <label>Category<input type="text" id="entryCategory" placeholder="Category"></label>
+          <label><input type="checkbox" id="entryPublished">Published</label>
+        </form>
       </section>
 
       <section id="articles" class="tab-content">
@@ -48,7 +75,10 @@
       </section>
 
       <section id="article-export">
-        <!-- TODO: Refer to the preview image to see what we will be building here: we need a container of some kind to hold a JSON export of our article. Ideally this container would show only a incipit (short preview) of the JSON and also be clickable to allow easy selection of the text it holds. What kind of element could we use for this? -->
+        <!-- DONE: Refer to the preview image to see what we will be building here: we need a container of some kind to hold a JSON export of our article. Ideally this container would show only a incipit (short preview) of the JSON and also be clickable to allow easy selection of the text it holds. What kind of element could we use for this? -->
+        <!-- Estimated time: 1 hour -->
+        <!-- Actual time: 10 minutes -->
+        <div id="article-json"></div>
       </section>
 
     </main>
@@ -59,13 +89,16 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.4/handlebars.js"></script>
     <!-- NOTE (stretch goal): Include script tags for 3rd party libraries to enable Markdown rendering and code syntax highlighting. If we are not using a CDN and instead choose to store these scripts with our project, make sure to put them into an appropriate location in the 'vendor' directory. Keep in mind that if we want these features to render properly on our main blog page (index.html) that we'll need to add those scripts over there, too. -->
-    <script src="/scripts/blogArticles.js"></script>
-    <script src="/scripts/article.js"></script>
-    <script src="/scripts/articleView.js"></script>
+    <script src="scripts/blogArticles.js"></script>
+    <script src="scripts/article.js"></script>
+    <script src="scripts/articleView.js"></script>
     <script>
-      // TODO: We will need to call a function here to initialize the behaviors on this page, once we get them built out. Why?
-      // (Look at the bottom of index.html as a reference. Since we are now using our JS on two different HTML pages that have different needs as to what parts of the code they utilize, we need to build a function that inializes each page.)
+      // DONE?: We will need to call a function here to initialize the behaviors on this page, once we get them built out. Why?
+      // (Look at the bottom of index.html as a reference. Since we are now using our JS on two different HTML pages that have different needs as to what parts of the code they utilize, we need to build a function that initializes each page.)
       //  Hint: Look in articleView.js for a function that does this.
+      // Estimated time: 15 minutes
+      // Actual time: 5 minutes?
+      articleView.initIndexPage();
     </script>
   </body>
 </html>
