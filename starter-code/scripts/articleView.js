@@ -73,18 +73,52 @@ articleView.setTeasers = function() {
   });
 };
 
+function Entry (entryObject) {
+  this.title = entryObject.title;
+  this.body = entryObject.body;
+  this.author = entryObject.author;
+  this.authorUrl = entryObject.authorUrl;
+  this.category = entryObject.category;
+  this.published = entryObject.published;
+}
+
 articleView.initNewArticlePage = function() {
- // TODO: Make the tabs work. Right now, you're seeing all the tab content (items with a class of tab-content) on the page at once. The section with the id of "write" should show when the "write" tab is clicked; it is also the default and should be shown on page load. The section with the id of "articles" should show when the "preview" tab is clicked.
+ // DONE: Make the tabs work. Right now, you're seeing all the tab content (items with a class of tab-content) on the page at once. The section with the id of "write" should show when the "write" tab is clicked; it is also the default and should be shown on page load. The section with the id of "articles" should show when the "preview" tab is clicked.
+// The articleView.handleMainNav function is doing this for us already, so...
+// Time spent: 20 minutes figuring out that nothing was needed...
 
-  // TODO: Hide the article-export section on page load
 
+  // DONE: Hide the article-export section on page load
+  $('#article-export').hide();
   $('#article-json').on('focus', function(){
     this.select();
   });
 
   // TODO: Add an event handler to update the preview and the article-export field if any inputs change.
+  $('#entryForm').on('change', function(event){
+    event.preventDefault();
+    $('#articles').empty();
+    $('#entryTitle').val();
+    // need to grab the chosen values and
 
-};
+    // TODO: Need to use the object contructor we created up above line 76 so we have somewhere to put the below stuff from the form
+    
+    // view.newEntry.title = $('#entryTitle').val();
+      // view.newEntry.date = (new Date()).toDateString();
+      // view.newEntry.category = $('#entryCategory').val();
+      // view.newEntry.mood = $('#entryMood').val();
+      // view.newEntry.text = $('#entryText').val();
+      // view.newEntry.author = $('#entryAuthor').val();
+      // view.newEntry.templateAndDomify('#entryPreview');
+  })
+    // enter them into the formTemplate using Handlebars
+    // var grabFormTemplate = $('#formTemplate').html();
+    // var formTemplateCompiler = Handlebars.compile(grabFormTemplate);
+    // Need the object to add to the compiler
+    // return formTemplateCompiler();
+    // append them to the #articles area
+    // also render the object to the article-json area
+}
 
 // this is the function that generates the preview and shows the export field
 articleView.create = function() {
@@ -110,4 +144,5 @@ articleView.initIndexPage = function() {
   articleView.handleAuthorFilter();
   articleView.handleMainNav();
   articleView.setTeasers();
+  articleView.initNewArticlePage();
 };
