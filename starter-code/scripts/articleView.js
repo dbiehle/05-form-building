@@ -73,20 +73,15 @@ articleView.setTeasers = function() {
   });
 };
 
-// DONE: Need to use the object contructor we created up above line 76
-//on this contructor func we will be passing in the entire <form> element
-//we placed it in the global namespace but perhaps we shouldve attached it to the View obj?
-function Entry(entryForm) {
-  this.title = $('form #entryTitle').val();
-  this.body = $('form #entryBody').val();
-  this.author = $('form #entryAuthor').val();
-  this.authorUrl = $('form #entryAuthorUrl').val();
-  this.category = $('form #entryCategory').val();
-  this.published = $('form #entryPublished').val();
+function Entry() {
+  this.title = $('#entryTitle').val();
+  this.body = $('#entryBody').val();
+  this.author = $('#entryAuthor').val();
+  this.authorUrl = $('#entryAuthorUrl').val();
+  this.category = $('#entryCategory').val();
+  this.published = $('#entryPublished').val();
 }
 
-//this method on the view object takes in an object that the Entry constructor created
-//then uses handlebars to input the form categories and render the html block to the DOM
 articleView.templateAndRender = function(newEntry) {
   var handlebarsStr = $('#formTemplate').html();
   var formCompilerFunc = Handlebars.compile(handlebarsStr);
@@ -106,7 +101,7 @@ articleView.initNewArticlePage = function() {
     this.select();
   });
 
-  // TODO: Add an event handler to update the preview and the article-export field if any inputs change.
+  // DONE: Add an event handler to update the preview and the article-export field if any inputs change.
   articleView.create();
 }
 
@@ -118,20 +113,19 @@ articleView.create = function() {
     $('#articles').empty();
 
     // DONE: Set up a var to hold the new article we are creating.
+    var newEntry = new Entry(this);
     // DONE: Instantiate an article based on what's in the form fields:
     // DONE: Use our interface to the Handblebars template to put the article preview into the DOM:
     //we call the `Entry` constructor, then pass in `this` which is referencing the form
     //that we've placed the eventlistener on and we assign the returned obj to 'newEntry' var
-    var newEntry = new Entry(this);
     articleView.templateAndRender(newEntry);
     $('#articles').show();
 
     // DONE: The new articles we create will be shown as JSON in an element in our article-export section. From there, we can copy/paste the JSON into our source data file.
     // Set up this "export" functionality. When data is inputted into the form, that data should be converted to stringified JSON. Then, display that JSON in the element inside the article-export section. The article-export section was hidden on page load; make sure to show it as soon as data is entered in the form.
-    // here we create and render the object to the article-json <div>
     var jsonStr = JSON.stringify(newEntry);
-    $('#article-export').empty();
-    $('#article-export').append(jsonStr);
+    $('#article-json').empty();
+    $('#article-json').append(jsonStr);
     $('#article-export').show();
 
   });

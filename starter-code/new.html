@@ -61,12 +61,12 @@
           Actual time: 10 minutes (so far...)
           -->
         <form id="entryForm">
-          <label>Title<input type="text" id="entryTitle" placeholder="Title"></label>
-          <label>Body<input type="text" id="entryBody" placeholder="Body"></label>
-          <label>Author<input type="text" id="entryAuthor" placeholder="Author"></label>
-          <label>AuthorUrl<input type="text" id="entryAuthorUrl" placeholder="AuthorUrl"></label>
-          <label>Category<input type="text" id="entryCategory" placeholder="Category"></label>
-          <label><input type="checkbox" id="entryPublished">Published</label>
+          <label><input type="text" id="entryTitle" placeholder="Title"></label>
+          <label><textarea id="entryBody" placeholder="Body of article"></textarea></label>
+          <label><input type="text" id="entryAuthor" placeholder="Author's Name"></label>
+          <label><input type="text" id="entryAuthorUrl" placeholder="Author's Website"></label>
+          <label><input type="text" id="entryCategory" placeholder="Category"></label>
+          <label><input type="checkbox" id="entryPublished"> Published</label>
         </form>
       </section>
 
@@ -77,8 +77,9 @@
       <section id="article-export">
         <!-- DONE: Refer to the preview image to see what we will be building here: we need a container of some kind to hold a JSON export of our article. Ideally this container would show only a incipit (short preview) of the JSON and also be clickable to allow easy selection of the text it holds. What kind of element could we use for this? -->
         <!-- Estimated time: 1 hour -->
-        <!-- Actual time: 10 minutes -->
+        <!-- Actual time: 20 minutes -->
         <div id="article-json"></div>
+        <p>When finalized, copy the above JSON, and paste into blogArticles.js</p>
       </section>
 
     </main>
